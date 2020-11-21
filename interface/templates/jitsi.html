@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% block title %}Jitsi App for Face Recognition{% endblock %}
+
+{% block content %}
+
+    <div id="div_container_of_body_elements" class="row pt-2">
+        <div id="div_iframe_jitsi" class="col-10"></div>  <!-- Jitsi runs here -->
+        <div class="container col-2">
+            <div id="id_div_btn_start_jitsi" class="col d-flex justify-content-center">
+                <button id="btn_init_jitsi" type="button" class="btn btn-outline-primary">Start Jitsi Conference
+                </button>
+            </div>
+            <ul class="nav nav-pills mb-3" id="ul_navs_index" role="tablist" hidden>
+                <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="bottom"
+                    title="Face Recognition (FR)">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#face_recog" role="tab"
+                       aria-controls="face_recog" aria-selected="true">FR</a>
+                </li>
+                <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="bottom"
+                    title="Check Life (CL)">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#check_life" role="tab"
+                       aria-controls="check_life" aria-selected="false">CL</a>
+                </li>
+                <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="bottom"
+                    title="Face Recognition in Database (FR_DB)">
+                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#face_recog_db" role="tab"
+                       aria-controls="face_recog_db" aria-selected="false">FR_DB</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="face_recog" role="tabpanel" aria-labelledby="pills-home-tab">
+                    {% include "face_recognition.html" %}
+                </div>
+                <div class="tab-pane fade" id="check_life" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    {% include "check_life.html" %}
+                </div>
+                <div class="tab-pane fade" id="face_recog_db" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    {% include "face_recognition_db.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            toggle_activate_bootsrap()
+            init_jitsi_config()
+        })
+    </script>
+
+{% endblock %}

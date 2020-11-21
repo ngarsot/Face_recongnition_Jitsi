@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<div class="row container-fluid py-4 d-flex justify-content-center">
+    <div id="id_div_btn_acquire_frame" class="col">
+        <button id="btn_acquire_frame" type="button" class="btn btn-outline-success">Record Frame and search in
+            Database
+        </button>
+    </div>
+</div>
+<div id="id_div_results_comparison_db" class="row container-fluid pb-1" hidden>
+
+    <div class="row py-1 mx-1">
+        <p id="p_status_comparison_db" class="font-weight-light font-italic text-right">Not running...</p>
+    </div>
+    <div class="row d-flex py-1 mx-1">
+        <label for="input_result_comp"><b>Identified Person</b></label>
+        <input type="text" class="form-control input-sm" id="input_identified_person_name" value="" readonly>
+    </div>
+    <div class="row py-1 mx-1">
+        <label for="input_accuracy"><b>Accuracy</b></label>
+        <input type="text" class="form-control" id="input_accuracy" value="" readonly>
+    </div>
+
+</div>
+
+<div id="id_div_btn_reset_face_comp_db" class="row container-fluid py-3" hidden>
+    <div id="id_div_btn_reset_face_comp_db_2" class="col d-flex justify-content-end">
+        <button id="btn_reset_face_comparison_db" type="button" class="btn btn-outline-dark">Stop and Reset</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<div class="row container-fluid py-4 d-flex justify-content-center">
+    <div id="id_div_btn_start_comparing" class="col-6" hidden>
+        <button id="btn_start_comparing" type="button" class="btn btn-outline-success btn-block">Start</button>
+    </div>
+    <div id="id_div_btn_finish_comparing" class="col-6" hidden>
+        <button id="btn_finish_comparing" type="button" class="btn btn-outline-danger btn-block">Stop</button>
+    </div>
+</div>
+<div id="id_div_results" class="row container-fluid pb-1" hidden>
+    <div class="row py-1 mx-1">
+        <p id="p_status_comparison" class="font-weight-light font-italic text-right">Not running...</p>
+    </div>
+    <div class="row d-flex py-1 mx-1">
+        <label for="input_result_comp"><b>Current Result</b></label>
+        <input type="text" class="form-control input-sm" id="input_result_comp" value="%" readonly>
+    </div>
+    <div class="row py-1 mx-1">
+        <label for="input_result_comp_accumulative"><b>Mean</b></label>
+        <input type="text" class="form-control" id="input_result_comp_accumulative" value="%" readonly>
+    </div>
+    <div class="row py-1 mx-1">
+        <label for="input_result_comp_best"><b>Best Result</b></label>
+        <input type="text" class="form-control" id="input_result_comp_best" value="%" readonly>
+    </div>
+</div>
+<div id="id_div_btn_reset" class="row container-fluid py-3" hidden>
+    <div id="id_div_btn_reset_2" class="col d-flex justify-content-end">
+        <button id="btn_reset_face_comparison" type="button" class="btn btn-outline-dark">Reset</button>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+body {
+    background-color: #FFFFF7;
+}
+
+label {
+    /*color: azure;*/
+    color: grey;
+}
+
+input {
+    text-align: right;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #696969 !important;
+}
+
+a {
+    color: #696969
+}
