@@ -1,3 +1,11 @@
+"""
+    face_comparison.py
+    ~~~~~~~~~
+
+    This module implements the FaceComparison class
+
+"""
+
 from face_recognition import face_encodings
 from numpy import corrcoef, ndarray, asarray, average, append
 
@@ -5,7 +13,15 @@ from src.face_container.face_container import FaceContainer
 
 
 class FaceComparison(FaceContainer):
+    """
+    The class conducts the face comparison (DNI vs face) for the face_recognition application. (FaceContainer class)
+    """
+
     def __init__(self):
+        """
+        Initialize the class attributes.
+        """
+
         FaceContainer.__init__(self)
         self.dni_person_encoding = None
 
@@ -15,13 +31,30 @@ class FaceComparison(FaceContainer):
         self.face_comparison_best_result = None
 
     def reset(self):
+        """
+        Resets the object.
+        """
+
         self.__init__()
 
     def extract_face_128d_features_from_single_photo(self):
+        """
+        Extracts the features for each face in the image.
+
+        :return: nothing
+        """
+
         self.dni_person_encoding = face_encodings(self.pixels_image_tmp)
 
     def compare_encoded_faces(self):
+        """
+        Extracts the features for each face in the image.
+
+        :return: nothing
+        """
+
         self.face_comparison_result = None
+        # Limits that 2 faces are in the image (DNI and person face)
         if len(self.dni_person_encoding) == 2:
             if isinstance(self.dni_person_encoding[0], ndarray) and isinstance(self.dni_person_encoding[1], ndarray):
                 self.face_comparison_result = round(corrcoef(self.dni_person_encoding[0],

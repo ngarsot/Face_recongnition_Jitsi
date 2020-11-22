@@ -1,3 +1,11 @@
+"""
+    constants.py
+    ~~~~~~~~~
+
+    Container of the server constants.
+
+"""
+
 # CONSTANTS
 AUTHORS = "N.Garsot"
 VERSION = '1.0.0'
