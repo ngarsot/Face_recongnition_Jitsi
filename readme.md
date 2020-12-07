@@ -16,7 +16,7 @@ accuracy in %.
     * Move the head to the top.
     * Move the head to the bottom.
 * **Face recognition along DB**: Captures a face and search it in a DB. Finally, it returns the identified person and 
-the level of similitud/accuracy in %.
+the level of similitud/accuracy in %. (The DB must contain the field of the name and the pertinent encoded face)
 
 ## How to install?
 
