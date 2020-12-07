@@ -6,6 +6,8 @@
 
 """
 
+import os
+
 # CONSTANTS
 AUTHORS = "N.Garsot"
 VERSION = '1.0.0'
@@ -80,29 +82,8 @@ HTTP_511_NETWORK_AUTHENTICATION_REQUIRED = 511
 TEMPLATES_FOLDER = "interface/templates/"
 STATIC_FOLDER = "interface/static/"
 
-"""
-# Path Constants
-LAST_ICC_CO_PATH = "Interface/static/tmp/last_icc_co/"
-FILTERED_DF_PATH = "Interface/static/tmp/filtered_df/"
-GENERATED_ATTACK_TRACKING_PATH = "Interface/static/tmp/attack_trackings/"
-EXTRACTED_ZIP_PATH = "Interface/static/tmp/extracted_zip/"
-FILTERLOG_PATH = "Interface/static/tmp/others/"
-
-UPLOAD_FOLDER = "Interface/static/tmp/uploads/"
-TEMPLATES_FOLDER = "Interface/templates/"
-STATIC_FOLDER = "Interface/static/"
-
-LAST_ICC_FILENAME = "last_image.png"
-LAST_CO_FILENAME = "last_coordinates.txt"
-FILTERED_DF_FILENAME = "df_csv.csv"
-FILTER_LOG_FILENAME = "filter_log_csv.csv"
-INSPECTOR_SELECT_FILENAME = "inspector_select.txt"
-FILTERED_LOG_FILENAME = "filtered_log.txt"
-# GENERATED_ATTACK_TRACKING_FILENAME is defined depending on input parameters
-UPLOADED_CO_FILENAME = "tmp_coordinates.txt"
-UPLOADED_ICC_FILENAME = "tmp_icc.png"
-UPLOADED_LOG_FILENAME = "tmp_log.txt"
-UPLOADED_ZIP_FILENAME = "tmp_zip.zip"
-
-LOG_HEADER_PATH = "src/table/log_headers_json/"
-"""
+# DB constants
+DB_LOCATION_PATH = 'src/database/'
+DB_NAME = 'face_identification.db'
+DB = os.path.join(DB_LOCATION_PATH, DB_NAME)
+DB_TABLE_NAME = 'encoded_faces'

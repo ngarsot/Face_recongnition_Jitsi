@@ -114,22 +114,30 @@ def get_similitude_from_db():
         if 'dataURL_frame' in request.form.keys():
             # Gets the dataURL and parse it
             data_url_frame = request.form['dataURL_frame']
-            DB_PHOTO_PATH_HARDCODED = 'src/test_files/test_data/db/'  # TODO change this with a real database and refactor the code
             # Extract features of the frame detected face.
             face_comparison_db.encoding_person(data_url=data_url_frame)
             # Then, it iterate for all the DB photos and extracts and compares with the target one.
+            '''
+            # It is possible to have the set of photos in a dir and conduct the comaprison there. The name
+            # of the photo file must be the name of the person inside the photo. If you want to use like this
+            # uncomment this lines and comment the fowolling one (face_comparison_db.load_encoding_unknown_from_db()).
+            DB_PHOTO_PATH_HARDCODED = 'src/test_files/test_data/db/'
             for photo in listdir(DB_PHOTO_PATH_HARDCODED):
                 photo_path = path.join(DB_PHOTO_PATH_HARDCODED, photo)
                 face_comparison_db.encoding_unknown(image_path=photo_path)
                 face_comparison_db.compare_encodings()
+            '''
+            face_comparison_db.load_encoding_unknown_from_db(DB)
+
             content = {'Log': 'Search processed correctly',
                        'person_identified_name': face_comparison_db.person_possible_identified,
-                       'accuracy': face_comparison_db.face_comparison_best_result}
+                       'accuracy': face_comparison_db.face_comp_best_result_pearson}
             face_comparison_db.reset()
 
         return content, HTTP_200_OK
 
-    except Exception:
+    except Exception as e:
+        print(str(e))
         return content, HTTP_205_RESET_CONTENT
 
 

@@ -7,12 +7,12 @@
 """
 
 import ntpath
-import os
 
 from face_recognition import face_encodings
-from numpy import corrcoef, ndarray
+from numpy import corrcoef, ndarray, linalg
 
 from src.face_container.face_container import FaceContainer
+from src.utils.utils_db import *
 
 
 class FaceComparisonDB(FaceContainer):
@@ -33,8 +33,9 @@ class FaceComparisonDB(FaceContainer):
         self.unknown_encoding = None
         self.unknown_name = None
 
-        self.face_comparison_current_result = 0
-        self.face_comparison_best_result = 0
+        self.face_comparison_current_result_distance = 100000
+        self.face_comparison_best_result_distance = 100000
+        self.face_comp_best_result_pearson = 0
 
     def reset(self):
         """
@@ -76,7 +77,23 @@ class FaceComparisonDB(FaceContainer):
         self.unknown_encoding = self.extract_face_128d_features_from_single_photo(self.unknown_pixels)
         self.unknown_name = ntpath.basename(os.path.splitext(self.file_image_path)[0])
 
-    def compare_encodings(self, threshold=91):
+    def load_encoding_unknown_from_db(self, db_dir, threshold=0.6):
+        """
+        Compares the encoded person face with all the encoded faces in DB. It returns the best result
+        whether the result is less than the selected threshold
+
+        :param db_dir: str --> Database path
+        :param threshold: int --> the threshold (euclidean distance)
+        :return: nothing
+        """
+
+        db_rows = get_rows(db_dir)
+        for row in db_rows:
+            self.unknown_name = row[1]
+            self.unknown_encoding = row[2]
+            self.compare_encodings(threshold)
+
+    def compare_encodings(self, threshold=0.6):
         """
         Compares two extracted features and sets the result accuracy in % (similitude between extracted faces
         features).
@@ -84,16 +101,23 @@ class FaceComparisonDB(FaceContainer):
         :param threshold: int --> threshold of comparison in %
         :return: nothing
         """
-
         if self.person_encoding is not None and self.unknown_encoding is not None:
-            if isinstance(self.person_encoding[0], ndarray) and isinstance(self.unknown_encoding[0], ndarray):
-                self.face_comparison_current_result = round(corrcoef(self.person_encoding[0],
-                                                                     self.unknown_encoding[0])[0, 1] * 100, 2)
-                if self.face_comparison_current_result >= threshold:
-                    self.face_comparison_best_result = max(self.face_comparison_current_result,
-                                                           self.face_comparison_best_result)
-                    if self.face_comparison_current_result == self.face_comparison_best_result:
+            if isinstance(self.person_encoding, list):
+                self.person_encoding = self.person_encoding[0]
+            if isinstance(self.unknown_encoding, list):
+                self.unknown_encoding = self.unknown_encoding[0]
+
+            if isinstance(self.person_encoding, ndarray) and isinstance(self.unknown_encoding, ndarray):
+                self.face_comparison_current_result_distance = linalg.norm(
+                    self.person_encoding - self.unknown_encoding)
+
+                if self.face_comparison_current_result_distance <= threshold:
+                    self.face_comparison_best_result_distance = min(self.face_comparison_current_result_distance,
+                                                                    self.face_comparison_best_result_distance)
+                    if self.face_comparison_current_result_distance == self.face_comparison_best_result_distance:
                         self.person_possible_identified = self.unknown_name
+                        self.face_comp_best_result_pearson = round(corrcoef(self.person_encoding,
+                                                                            self.unknown_encoding)[0, 1] * 100, 2)
 
     @staticmethod
     def extract_face_128d_features_from_single_photo(pixels_face_to_encode):
@@ -120,10 +144,11 @@ if __name__ == '__main__':
     path_db = '../test_files/test_data/db/'
     photo = '../test_files/test_data/Norbert_original.png'
     obj_face_comp_db.encoding_person(image_path=photo)
+
     for photo in os.listdir(path_db):
         photo_path = os.path.join(path_db, photo)
         obj_face_comp_db.encoding_unknown(image_path=photo_path)
         obj_face_comp_db.compare_encodings()
 
     print('\n\n' + obj_face_comp_db.person_possible_identified + ' wins with ' +
-          str(obj_face_comp_db.face_comparison_best_result) + '% of maximum accuracy!!!')
+          str(obj_face_comp_db.face_comp_best_result_pearson) + '% of maximum accuracy!!!')
