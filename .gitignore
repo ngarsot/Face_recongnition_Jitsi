@@ -4,4 +4,4 @@ __pycache__/
 test_files/
 .idea/
 .DS_Store
-database/
+database/face_identification.db

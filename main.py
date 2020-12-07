@@ -121,7 +121,7 @@ def get_similitude_from_db():
             # It is possible to have the set of photos in a dir and conduct the comaprison there. The name
             # of the photo file must be the name of the person inside the photo. If you want to use like this
             # uncomment this lines and comment the fowolling one (face_comparison_db.load_encoding_unknown_from_db()).
-            DB_PHOTO_PATH_HARDCODED = 'src/test_files/test_data/db/'
+            DB_PHOTO_PATH_HARDCODED = 'src/database/dir_images/'
             for photo in listdir(DB_PHOTO_PATH_HARDCODED):
                 photo_path = path.join(DB_PHOTO_PATH_HARDCODED, photo)
                 face_comparison_db.encoding_unknown(image_path=photo_path)

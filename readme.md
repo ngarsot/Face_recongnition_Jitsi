@@ -28,7 +28,6 @@ There are several dependencies that you must install before use it. Follow the i
 * Now, it will be mandatory to perform the following: 
     * *pip install cmake (I may carry some error if a c compiler is not installed)*
     * *pip install dlib*
-    * *pip install* 
     * *pip install face-recognition*
 
 Right now, the application may be ready to run. Just run the main.py and the flask framework will runs the server. Then, open

@@ -54,7 +54,9 @@ def get_rows(db=DB):
     else:
         return None
 
-
+# ==================================================
+# ========== TO CREATE AND TO FILL THE DB ==========
+# ==================================================
 '''
 if __name__ == '__main__':
     import pandas as pd
