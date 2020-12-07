@@ -23,7 +23,7 @@ the level of similitud/accuracy in %.
 There are several dependencies that you must install before use it. Follow the instructions below:
 
 * *(Optional) Use Pycharm and creates a new Project. Put all the files in the root Project folder.*
-* Use a venv with **python3.8.3** *(Only tested with this library)*.
+* Use a venv with **python3.8.3** *(Only tested with this version)*.
 * Install the requirements.txt (*pip install -r requirements.txt*)
 * Now, it will be mandatory to perform the following: 
     * *pip install cmake (I may carry some error if a c compiler is not installed)*
