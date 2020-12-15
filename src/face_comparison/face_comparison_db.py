@@ -98,7 +98,7 @@ class FaceComparisonDB(FaceContainer):
         Compares two extracted features and sets the result accuracy in % (similitude between extracted faces
         features).
 
-        :param threshold: int --> threshold of comparison in %
+        :param threshold: int --> threshold of comparison in euclidean distance
         :return: nothing
         """
         if self.person_encoding is not None and self.unknown_encoding is not None:
@@ -142,7 +142,7 @@ if __name__ == '__main__':
 
     obj_face_comp_db = FaceComparisonDB()
     path_db = '../test_files/test_data/db/'
-    photo = '../test_files/test_data/Norbert_original.png'
+    photo = '../test_files/test_data/Norbert_25anys_frontal_24.png'
     obj_face_comp_db.encoding_person(image_path=photo)
 
     for photo in os.listdir(path_db):

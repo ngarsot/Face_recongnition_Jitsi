@@ -168,11 +168,11 @@ if __name__ == "__main__":
     """
 
     test_images = ['../test_files/test_data/Cara_1.jpg',
-                   '../test_files/test_data/Cara_2.jpg',
-                   '../test_files/test_data/Cara_3.jpg',
-                   '../test_files/test_data/Cara_4.jpg',
-                   '../test_files/test_data/Cara_5.jpg',
-                   '../test_files/test_data/Cara_6.jpg']
+                   '../test_files/test_data/Norbert_25anys_capDreta_2.jpg',
+                   '../test_files/test_data/Norbert_25anys_capDreta_3.jpg',
+                   '../test_files/test_data/Norbert_25anys_capDreta_4.jpg',
+                   '../test_files/test_data/Norbert_25anys_capDreta_5.jpg',
+                   '../test_files/test_data/Norbert_25anys_perfil.jpg']
 
     obj_check_life = Checklife()
     for test_image in test_images:
