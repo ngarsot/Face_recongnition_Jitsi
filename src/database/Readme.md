@@ -1,0 +1,1 @@
+Add, in this folder, the Database (XXXX.db) in order to be accessible to with the app FR_DB functionality.
